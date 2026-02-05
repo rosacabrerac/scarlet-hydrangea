@@ -2,5 +2,5 @@
 .env
 *.pyc
 __pycache__/
-ARCHITECTURE.md
-QUICK_START.md
+*.egg-info/
+*.egg/
