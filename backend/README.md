@@ -23,8 +23,13 @@ A clean, scalable Flask + PostgreSQL backend skeleton built for team collaborati
    ```
 
 3. **Install dependencies:**
-   ```bash
-   pip install -e .
+
+### Using pip (standard Python)
+```bash
+pip install -e .
+
+### Using  uv(faster dependency resolver)
+uv sync
    ```
 
 4. **Configure environment:**
@@ -44,8 +49,13 @@ A clean, scalable Flask + PostgreSQL backend skeleton built for team collaborati
    ```
 
 7. **Run the app:**
+### With pip
    ```bash
    python run.py
+
+### With uv
+   ```bash
+   uv run run.py
    ```
 
 Visit `http://localhost:5000/health` to verify setup.
