@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import mockTools from "../mock/tools.mock";
-
+import mockTools from "../mock/tools.mock.js";
+import StatusBadge from "../components/StatusBadge.jsx";
 
 export default function ToolDetail() {
   const { id } = useParams();
@@ -8,7 +8,7 @@ export default function ToolDetail() {
 
   if (!tool) {
     return (
-      <div style={{ padding: 16 }}>
+      <div className="container-narrow">
         <h1>Tool not found</h1>
         <Link to="/tools">Back to Tools</Link>
       </div>
@@ -16,52 +16,38 @@ export default function ToolDetail() {
   }
 
   return (
-  <div style={{ padding: 24, maxWidth: 600, margin: "0 auto" }}>
-    <Link to="/tools" style={{ textDecoration: "none", color: "#555" }}>
-      ← Back to Tools
-    </Link>
+    <div className="container-narrow">
+      <Link to="/tools" className="muted">
+        ← Back to Tools
+      </Link>
 
-    <div
-      style={{
-        marginTop: 16,
-        padding: 20,
-        border: "1px solid #ddd",
-        borderRadius: 8,
-      }}
-    >
-      <h1 style={{ marginBottom: 12 }}>{tool.name}</h1>
+      <div className="card-lg" style={{ marginTop: 16 }}>
+        <h1 style={{ marginBottom: 12 }}>{tool.name}</h1>
 
-      <p>
-        <strong>Category:</strong> {tool.category}
-      </p>
+        <p>
+          <strong>Category:</strong> {tool.category}
+        </p>
 
-      <p>
-        <strong>Condition:</strong> {tool.condition}
-      </p>
+        <p>
+          <strong>Condition:</strong> {tool.condition}
+        </p>
 
-      <p>
-        <strong>Status:</strong>{" "}
-        <span style={{ color: tool.available ? "green" : "red" }}>
-          {tool.available ? "Available" : "Unavailable"}
-        </span>
-      </p>
+        <p style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <strong>Status:</strong> <StatusBadge available={tool.available} />
+        </p>
 
-      <button
-        disabled={!tool.available}
-        style={{
-          marginTop: 16,
-          padding: "10px 16px",
-          borderRadius: 4,
-          border: "none",
-          backgroundColor: tool.available ? "#2563eb" : "#aaa",
-          color: "#fff",
-          cursor: tool.available ? "pointer" : "not-allowed",
-        }}
-      >
-        Request to Borrow
-      </button>
+        <button
+          className={`btn btn-primary ${tool.available ? "" : "btn-disabled"}`}
+          disabled={!tool.available}
+          style={{ marginTop: 16 }}
+        >
+          {tool.available ? "Request to Borrow" : "Unavailable"}
+        </button>
+
+        <p className="note" style={{ marginTop: 10 }}>
+          
+        </p>
+      </div>
     </div>
-  </div>
-);
-
+  );
 }
