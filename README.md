@@ -1,6 +1,7 @@
 # scarlet-hydrangea
 Repository for Team Scarlet Hydrangea - Spring 2026 Cohort
 
+<<<<<<< mohamedomar94-patch-1
 Community Tool Library
 
 Borrow, Don’t Buy
@@ -100,3 +101,5 @@ Architectural decisions and wireframes live in /docs
 Major changes should be discussed before implementation
 
 Keep PRs focused and small where possible
+=======
+>>>>>>> main
