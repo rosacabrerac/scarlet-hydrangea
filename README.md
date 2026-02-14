@@ -1,105 +1,138 @@
-# scarlet-hydrangea
+# Scarlet Hydrangea
+
 Repository for Team Scarlet Hydrangea - Spring 2026 Cohort
 
-<<<<<<< mohamedomar94-patch-1
-Community Tool Library
+## Project Scope - Community Tool Library: Borrow, Don't Buy
 
-Borrow, Don’t Buy
+### The Goal
 
-What is this?
+The intent of this project is to build a Community Tool Library to allow a community to pool their resources and avoid buying tools that another community member has already purchased.
 
-Community Tool Library is a shared platform that allows people to, list their tools, browse tools, request to borrow them, and return them, instead of buying tools they only need occasionally.
+The Community Tool Library is a shared platform that allows people to list their tools, browse available tools, request and borrow tools, and track who currently has a given tool.
 
-MVP scope: Submit tools, browse tools, request to borrow, admin approve/return
+### In Scope Features (MVP)
 
-MVP Scope
+These features are required for the tool library to function at all:
 
-Add tools
+**Authentication**
 
-Browse available tools
+- User registration
+- User login
 
-Request to borrow a tool
+**Tool Database**
 
-Admin approval of tools requests
+- Browse all tools in the database
+- Submit new tools
+- See tool details
+- Request to borrow a tool
+- Admin approval of tools requests
+- Tool return process/flow
 
-Tool return flow
+### Out of Scope Features (Post-MVP)
 
-Project Structure
-/frontend   → React + Vite application
-/backend    → Backend service (TBD – discuss with @DeathValley)
-/docs       → Wireframes, architecture notes, and decisions
-/.github    → Issue & PR templates
+Additional features listed below would augment the usefulness of the Tool Library, but are not critical for base function:
 
-Quick Start
-Frontend
-cd frontend
-npm install
-npm run dev
+- Track tool damage
+- Tool search
+- Tool categorization/filtering
+- Duplicate tool grouping
 
+## How To Contribute
 
-The frontend will start in development mode using Vite.
+1. Clone the repository:
 
-Backend
+    `git clone https://github.com/nhcarrigan-spring-2026-cohort/scarlet-hydrangea.git`
 
-Backend setup is to be defined.
-(talk to @DeathValley )
+2. Create a new branch based on your task or issue:
 
-Contribution Workflow
-General Rules
+    `git checkout -b feature/your-name-task`
 
-Do not push directly to main unless the work is complete and working.
+3. Make your changes and commit them:
 
-Use separate long-lived branches for:
+    `git commit -m "Add: login form component"`
+    - Each commit should cover a single feature or fix.
+    - Use clear, descriptive, commit messages:
+        - "feat(frontend): add tool browse page"
+        - "fix(backend): correct borrow approval logic"
+        - "docs: update wireframes for borrow flow"
 
-frontend
+4. Push your branch:
 
-backend
+    `git push origin feature/your-name-task`
 
-docs
+5. Open a pull request to `main` using this template:
 
-Commit Messages
+```
+- Summary
+What changed?
 
-Use clear, descriptive commit messages.
+- Linked issue (if any)
+Closes #x (replace 'x' with issue number)
 
-Example:
+- Notes
+Anything else to know?
+```
 
-feat(frontend): add tool browse page
-fix(backend): correct borrow approval logic
-docs: update wireframes for borrow flow
+6. Once the pull request is reviewed and merged, delete your branch:
 
-Pull Request Steps
+    `git branch -d feature/your-name-task`
 
-Push your branch to GitHub
+    This can only be done while a different branch is checked out.
 
-Open a Pull Request into main
+## Technical Stack
 
-Request a review from the relevant team
+- Frontend: React + Vite application
+- Backend: Python
+- Database: PostgreSQL
 
-Address feedback and ensure checks pass
+### Project Structure
 
-Merge and delete the branch
+- README.md → Overview of project and contribution guide
+- /frontend → React + Vite application
+- /backend → Python Flask + SQLAlchemy connection to PostgreSQL database
+- /docs → Wireframes, architecture notes, and decisions
+- /.github → Issue & PR templates for github
 
-Team
+## Quick Start
 
-Leadership
-@ITKev: https://github.com/ITKeviin
-@Buchi: https://github.com/Scott0275
+### Frontend
 
-Participants
-@mstar⭐: https://github.com/mohamedomar94
-@S7730: https://github.com/Harshada-87
-@Sebastian_W: https://github.com/Sebastian-Wlo
-@v…: https://github.com/virtual256
-@DeathValley: https://github.com/SinanFarook
-@Greg: https://github.com/n00b01
-@TheRebel-_-: https://github.com/therebel05
+    The frontend will start in development mode using Vite:
 
-Notes
+`cd frontend`
 
-Architectural decisions and wireframes live in /docs
+`npm install`
 
-Major changes should be discussed before implementation
+`npm run dev`
 
-Keep PRs focused and small where possible
-=======
->>>>>>> main
+### Backend
+
+    The backend consists of several components:
+    - Route endpoints
+    - Database connection
+    - Database schema
+
+`cd backend`
+
+Check QUICK_START.md for next steps
+
+## Team
+
+### Leadership
+
+<ul>
+    <li><a href="https://github.com/ITKeviin">ITKev</a></li>
+    <li><a href="https://github.com/Scott0275">Buchi</a></li>
+</ul>
+
+### Participants
+
+<ul>
+    <li><a href="https://github.com/Sebastian-Wlo">Sebastian*W</a></li>
+    <li><a href="https://github.com/SinanFarook">DeathValley</a></li>
+    <li><a href="https://github.com/n00b01">Greg</a></li>
+    <li><a href="https://github.com/Harshada-87">S7730</a></li>
+    <li><a href="https://github.com/virtual256">Virtual256</a></li>
+    <li><a href="https://github.com/mohamedomar94">mstar⭐</a></li>
+    <li><a href="https://github.com/rosacabrerac">Rozenroo</a></li>
+</ul>
