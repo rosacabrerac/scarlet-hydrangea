@@ -1,6 +1,7 @@
 import mockTools from "../mock/tools.mock.js";
+
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") || "http://127.0.0.1:5000";
+  (import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:5000").replace(/\/$/, "");
 
 class ApiError extends Error {
   constructor(message, { status, data, path }) {
@@ -25,8 +26,7 @@ async function apiRequest(path, { headers, ...options } = {}) {
   try {
     data = await res.json();
   } catch {
-    // Some errors (proxies, HTML error pages) can return non-JSON.
-    // Keep `data` as null so the fallback message below is still useful.
+    // sometimes error pages are HTML, not JSON
   }
 
   if (!res.ok) {
@@ -40,30 +40,60 @@ async function apiRequest(path, { headers, ...options } = {}) {
 
 // Tool catalog
 export async function getTools() {
-  const data = await apiRequest("/api/tools");
+  try {
+    const data = await apiRequest("/api/tools");
 
-  if (!data || !Array.isArray(data.tools)) {
-    throw new Error("Unexpected response shape from /api/tools");
+    // support either: [ ...tools ] OR { tools: [ ...tools ] }
+    const tools = Array.isArray(data) ? data : data?.tools;
+
+    if (!Array.isArray(tools)) {
+      throw new Error("Unexpected response shape from /api/tools");
+    }
+
+    return tools;
+  } catch (err) {
+    console.warn("getTools: using mockTools fallback", err);
+    return mockTools;
   }
-
-  return data.tools;
 }
 
 export async function getToolById(id) {
-  const data = await apiRequest(`/api/tools/${id}`);
+  const idStr = String(id);
 
-  if (!data || !data.tool) {
-    throw new Error(`Tool ${id} not found or response shape changed`);
+  try {
+    const data = await apiRequest(`/api/tools/${idStr}`);
+
+    // support either: { tool: {...} } OR { ...tool }
+    const tool = data?.tool ?? data;
+
+    if (!tool || String(tool.id) !== idStr) {
+      throw new Error(`Tool ${idStr} not found or response shape changed`);
+    }
+
+    return tool;
+  } catch (err) {
+    console.warn("getToolById: using mockTools fallback", err);
+
+    const tool = mockTools.find((t) => String(t.id) === idStr);
+    if (!tool) throw new Error(`Tool ${idStr} not found`);
+    return tool;
   }
-
-  return data.tool;
 }
 
 // Borrowing
 export async function createBorrowRequest(payload) {
-  return apiRequest("/api/requests", {
-    method: "POST",
-    body: JSON.stringify(payload),
-  });
+  try {
+    return await apiRequest("/api/requests", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.warn("createBorrowRequest: mock success fallback", err);
+    return { ok: true, mocked: true };
+  }
 }
+
+
+
+
 
